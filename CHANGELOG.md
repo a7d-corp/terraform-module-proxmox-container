@@ -7,4 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Initial module configuration.
+
 [Unreleased]: https://github.com/a7d-corp/terraform-module-proxmox-container/tree/main
