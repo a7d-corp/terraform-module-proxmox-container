@@ -4,6 +4,36 @@ variable "arch" {
   type        = string
 }
 
+variable "bwlimit" {
+  default     = null
+  description = "A number for setting the override I/O bandwidth limit (in KiB/s)."
+  type        = number
+}
+
+variable "clone" {
+  default     = null
+  description = "The lxc vmid to clone."
+  type        = number
+}
+
+variable "clone_storage" {
+  default     = null
+  description = "Target storage for full clone."
+  type        = string
+}
+
+variable "cmode" {
+  default     = null
+  description = "Configures console mode. `tty` tries to open a connection to one of the available tty devices. `console` tries to attach to `/dev/console` instead. `shell` simply invokes a shell inside the container (no login). Default is `tty`."
+  type        = string
+}
+
+variable "console" {
+  default     = null
+  description = "A boolean to attach a console device to the container. Default is true."
+  type        = bool
+}
+
 variable "cores" {
   default     = null
   description = "Number of cores to allocate. A container can use all available cores by default."
@@ -26,6 +56,17 @@ variable "description" {
   default     = null
   description = "Sets the container description seen in the web interface."
   type        = string
+}
+
+variable "features" {
+  default     = null
+  description = "An object for allowing the container to access advanced features."
+  type = object({
+    fuse    = optional(bool)
+    keyctl  = optional(bool)
+    mount   = optional(string)
+    nesting = optional(bool)
+  })
 }
 
 variable "full" {
@@ -54,6 +95,12 @@ variable "hastate" {
 variable "hagroup" {
   default     = null
   description = "The HA group identifier the resource belongs to."
+  type        = string
+}
+
+variable "hookscript" {
+  default     = null
+  description = "A string containing a volume identifier to a script that will be executed during various steps throughout the container's lifetime. The script must be an executable file."
   type        = string
 }
 
@@ -122,6 +169,12 @@ variable "onboot" {
   default     = null
   description = "A boolean that determines if the container will start on boot. Default is false"
   type        = bool
+}
+
+variable "ostemplate" {
+  default     = null
+  description = "The volume identifier that points to the OS template or backup file."
+  type        = string
 }
 
 variable "ostype" {
@@ -194,6 +247,11 @@ variable "tags" {
   type        = string
 }
 
+variable "target_node" {
+  description = "Name of the node to assign the instance to."
+  type        = string
+}
+
 variable "template" {
   default     = null
   description = "A boolean that determines if this container is a template."
@@ -223,10 +281,3 @@ variable "vmid" {
   description = "A number that sets the VMID of the container. If set to 0, the next available VMID is used. Default is 0."
   type        = number
 }
-
-variable "target_node" {
-  description = "Name of the node to assign the instance to."
-  type        = string
-}
-
-
