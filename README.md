@@ -47,7 +47,10 @@ In the case of the following variables, please see the provider documentation fo
 | cpulimit | A number to limit CPU usage by. Default is 0. | `number` | `null` | no |
 | cpuunits | A number of the CPU weight that the container possesses. Default is 1024. | `number` | `null` | no |
 | description | Sets the container description seen in the web interface. | `string` | `null` | no |
-| features | An object for allowing the container to access advanced features. | <pre>object({<br>    fuse    = optional(bool)<br>    keyctl  = optional(bool)<br>    mount   = optional(string)<br>    nesting = optional(bool)<br>  })</pre> | `null` | no |
+| features_fuse | A boolean for enabling FUSE mounts. | `bool` | `null` | no |
+| features_keyctl | A boolean for enabling the `keyctl()` system call. | `bool` | `null` | no |
+| features_mount | Defines the filesystem types (separated by semicolons) that are allowed to be mounted. | `string` | `null` | no |
+| features_nesting | A boolean to allow nested virtualization. | `bool` | `null` | no |
 | full | When cloning, create a full copy of all disks. This is always done when you clone a normal CT. For CT template it creates a linked clone by default. | `bool` | `null` | no |
 | hagroup | The HA group identifier the resource belongs to. | `string` | `null` | no |
 | hastate | Requested HA state for the resource. | `string` | `null` | no |

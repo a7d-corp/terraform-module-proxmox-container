@@ -64,7 +64,6 @@ resource "proxmox_lxc" "proxmox_container" {
   }
 
   # PVE config
-  features     = var.features
   hastate      = var.hastate
   hagroup      = var.hagroup
   hookscript   = var.hookscript
@@ -75,6 +74,13 @@ resource "proxmox_lxc" "proxmox_container" {
   restore      = var.restore
   start        = var.start
   unprivileged = var.unprivileged
+
+  features {
+    fuse    = var.features_fuse
+    keyctl  = var.features_keyctl
+    mount   = var.features_mount
+    nesting = var.features_nesting
+  }
 
   # image config
   clone                = var.clone
