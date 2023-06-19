@@ -2,10 +2,10 @@ resource "proxmox_lxc" "proxmox_container" {
   # meta config
   description     = var.description
   hostname        = var.hostname
-  name            = var.name
   password        = var.password
   ssh_public_keys = var.ssh_public_keys
   tags            = var.tags
+  target_node     = var.target_node
   vmid            = var.vmid
 
   # hardware config
@@ -17,9 +17,13 @@ resource "proxmox_lxc" "proxmox_container" {
   cpulimit = var.cpulimit
   cpuunits = var.cpuunits
   memory   = var.memory
-  rootfs   = var.rootfs
   swap     = var.swap
   tty      = var.tty
+
+  rootfs {
+    size    = var.rootfs_size
+    storage = var.rootfs_storage
+  }
 
   dynamic "mountpoint" {
     for_each = var.mountpoints
@@ -60,7 +64,6 @@ resource "proxmox_lxc" "proxmox_container" {
   }
 
   # PVE config
-  features     = var.features
   hastate      = var.hastate
   hagroup      = var.hagroup
   hookscript   = var.hookscript
@@ -71,6 +74,13 @@ resource "proxmox_lxc" "proxmox_container" {
   restore      = var.restore
   start        = var.start
   unprivileged = var.unprivileged
+
+  features {
+    fuse    = var.features_fuse
+    keyctl  = var.features_keyctl
+    mount   = var.features_mount
+    nesting = var.features_nesting
+  }
 
   # image config
   clone                = var.clone

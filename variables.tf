@@ -58,15 +58,27 @@ variable "description" {
   type        = string
 }
 
-variable "features" {
+variable "features_fuse" {
   default     = null
-  description = "An object for allowing the container to access advanced features."
-  type = object({
-    fuse    = optional(bool)
-    keyctl  = optional(bool)
-    mount   = optional(string)
-    nesting = optional(bool)
-  })
+  description = "A boolean for enabling FUSE mounts."
+  type        = bool
+}
+
+variable "features_keyctl" {
+  default     = null
+  description = "A boolean for enabling the `keyctl()` system call."
+  type        = bool
+}
+
+variable "features_mount" {
+  default     = null
+  description = "Defines the filesystem types (separated by semicolons) that are allowed to be mounted."
+  type        = string
+}
+variable "features_nesting" {
+  default     = null
+  description = "A boolean to allow nested virtualization."
+  type        = bool
 }
 
 variable "full" {
@@ -208,13 +220,14 @@ variable "restore" {
   type        = bool
 }
 
-# see provider docs for info on options https://github.com/Telmate/terraform-provider-proxmox/blob/master/docs/resources/lxc.md#argument-reference
-variable "rootfs" {
-  description = "An object for configuring the root mount point of the container. Can only be specified once."
-  type = object({
-    size    = string
-    storage = string
-  })
+variable "rootfs_size" {
+  description = "Size of the storage used for the root mount point of the container."
+  type        = string
+}
+
+variable "rootfs_storage" {
+  description = "Location for the storage used for the root mount point of the container."
+  type        = string
 }
 
 variable "searchdomain" {
