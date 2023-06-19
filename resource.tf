@@ -2,7 +2,6 @@ resource "proxmox_lxc" "proxmox_container" {
   # meta config
   description     = var.description
   hostname        = var.hostname
-  name            = var.name
   password        = var.password
   ssh_public_keys = var.ssh_public_keys
   tags            = var.tags
