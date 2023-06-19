@@ -136,7 +136,7 @@ variable "memory" {
 
 # see provider docs for info on options https://github.com/Telmate/terraform-provider-proxmox/blob/master/docs/resources/lxc.md#argument-reference
 variable "mountpoints" {
-  default     = null
+  default     = []
   description = "List of objects for defining volumes to use as container mount points."
   type = list(object({
     mp        = string
@@ -160,7 +160,7 @@ variable "nameserver" {
 
 # see provider docs for info on options https://github.com/Telmate/terraform-provider-proxmox/blob/master/docs/resources/lxc.md#argument-reference
 variable "networks" {
-  default     = null
+  default     = []
   description = "A list of objects defining network interfaces for the container."
   type = list(object({
     name     = string
