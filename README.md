@@ -65,7 +65,8 @@ In the case of the following variables, please see the provider documentation fo
 | pool | The name of the Proxmox resource pool to add this container to. | `string` | `null` | no |
 | protection | A boolean that enables the protection flag on this container. Stops the container and its disk from being removed/updated. Default is false. | `bool` | `null` | no |
 | restore | A boolean to mark the container creation/update as a restore task. | `bool` | `null` | no |
-| rootfs | An object for configuring the root mount point of the container. Can only be specified once. | <pre>object({<br>    size    = string<br>    storage = string<br>  })</pre> | n/a | yes |
+| rootfs_size | Size of the storage used for the root mount point of the container. | `string` | n/a | yes |
+| rootfs_storage | Location for the storage used for the root mount point of the container. | `string` | n/a | yes |
 | searchdomain | Sets the DNS search domains for the container. If neither nameserver nor searchdomain are specified, the values of the Proxmox host will be used by default. | `string` | `null` | no |
 | ssh_public_keys | Multi-line string of SSH public keys that will be added to the container. Can be defined using heredoc syntax. | `string` | `null` | no |
 | start | A boolean that determines if the container is started after creation. Default is false. | `bool` | `null` | no |

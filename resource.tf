@@ -17,9 +17,13 @@ resource "proxmox_lxc" "proxmox_container" {
   cpulimit = var.cpulimit
   cpuunits = var.cpuunits
   memory   = var.memory
-  rootfs   = var.rootfs
   swap     = var.swap
   tty      = var.tty
+
+  rootfs {
+    size    = var.rootfs_size
+    storage = var.rootfs_storage
+  }
 
   dynamic "mountpoint" {
     for_each = var.mountpoints
