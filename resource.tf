@@ -6,6 +6,7 @@ resource "proxmox_lxc" "proxmox_container" {
   password        = var.password
   ssh_public_keys = var.ssh_public_keys
   tags            = var.tags
+  target_node     = var.target_node
   vmid            = var.vmid
 
   # hardware config
