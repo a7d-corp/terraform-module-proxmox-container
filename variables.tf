@@ -208,13 +208,14 @@ variable "restore" {
   type        = bool
 }
 
-# see provider docs for info on options https://github.com/Telmate/terraform-provider-proxmox/blob/master/docs/resources/lxc.md#argument-reference
-variable "rootfs" {
-  description = "An object for configuring the root mount point of the container. Can only be specified once."
-  type = object({
-    size    = string
-    storage = string
-  })
+variable "rootfs_size" {
+  description = "Size of the storage used for the root mount point of the container."
+  type        = string
+}
+
+variable "rootfs_storage" {
+  description = "Location for the storage used for the root mount point of the container."
+  type        = string
 }
 
 variable "searchdomain" {
